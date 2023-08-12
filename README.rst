@@ -143,24 +143,23 @@ Questions
 :code:`method(1, arg=2, **{"arg": 3})`?
 
 **A**:The Python runtime will detect duplicates and give a TypeError
-along the lines of :code:`got multiple values for keyword argument
-'arg'`.  It is not possible to call any function whether implemented
+along the lines of :code:`got multiple values for keyword argument 'arg'`.
+It is not possible to call any function whether implemented
 in C or Python with duplicate keyword arguments.
 
 **Q**: What happens if I provide an argument positionally and as a
 keyword?
 
-**A**: For Python implemented methods you get :code:`TypeError: got
-multiple values for argument 'arg'`.  C implemented methods need to
-report the error themselves which PyArg_ParseTupleAndKeywords and
-_PyArg_UnpackKeywords do.
+**A**: For Python implemented methods you get
+:code:`TypeError: got multiple values for argument 'arg'`.  C
+implemented methods need to report the error themselves which
+PyArg_ParseTupleAndKeywords and _PyArg_UnpackKeywords do.
 
 **Q**: What about Python 3.6?  It is the base version in RHEL 8,
 although updates are available.
 
 **A**: The fastcall code will compile, but at runtime there is an
-error.  :code:`SystemError: Bad call flags in PyCFunction_Call.
-METH_OLDARGS is no longer supported!`
+error.  :code:`SystemError: Bad call flags in PyCFunction_Call. METH_OLDARGS is no longer supported!`
 
 Irritations
 ===========
