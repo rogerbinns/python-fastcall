@@ -15,6 +15,7 @@ varargs_keywords
 ----------------
 
 This is the traditional approach that has been in Python forever.
+They are declared as :code:`METH_VARARGS | METH_KEYWORDS`
 
 .. code:: C
 
@@ -34,6 +35,7 @@ fastcall_keywords
 There were a variety of internal to the interpreter calling conventions with names
 like fastcall and vectorcall, ultimately exposed in this implementation for
 C extensions.  `PEP 590 <https://peps.python.org/pep-0590/>`__  has details.
+They are declared as :code:`METH_FASTCALL | METH_KEYWORDS`
 
 .. code:: C
 
@@ -81,7 +83,7 @@ CPython uses `argument clinic
 code, but is not supported for use outside of CPython.  It generates
 an intermediate function that has the fastcall signature, does the
 parsing into variables, and then calls the actual C function
-implementation passing those variable as regular C parameters.  It can
+implementation passing those variables as regular C parameters.  It can
 also do cleanup after the implementation returns such as releasing
 buffer objects.
 
@@ -90,7 +92,7 @@ The generated code is as follows:
 * Initialize C variables to default values
 * Allocate a stack array the size of the parameter list - eg
   :code:`PyObject *fastargs[9]` if there are 9 parameters
-* Call private internal :code:`_PyArg_UnpackKeywords`` which fills the
+* Call private internal :code:`_PyArg_UnpackKeywords` which fills the
   array with the positional and keyword arguments into the appropriate
   slot.  It is passed the number of mandatory positional arguments,
   valid keyword parameter names and order etc, and does error checking
